@@ -24,7 +24,7 @@ check_port_free() {
 # --- Check required ports ---
 check_port_free 3306
 check_port_free 8080
-check_port_free 8000
+check_port_free 8081
 
 # --- Move into frontend directory ---
 if [ -d "./frontend" ]; then

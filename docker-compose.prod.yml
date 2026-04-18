@@ -2,14 +2,11 @@ version: "3.8"
 
 services:
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
     ports:
-      - "8080:8080"
-    volumes:
-      - ./frontend:/app
-      - ./frontend/.env:/app/.env
-      - /app/node_modules
-    working_dir: /app
+      - "8080:80"
     depends_on:
       - backend
 
@@ -17,15 +14,13 @@ services:
     build: ./backend
     ports:
       - "8081:8081"
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
-    working_dir: /app
     command: npm start
     depends_on:
       - mysql
-    env_file:
-      - ./backend/.env
+    environment:
+      - ALLOW_ORIGIN=http://localhost:8080
+      - DATABASE_URL=mysql://root:root@mysql:3306/qfood
+      - PORT=8081
 
   mysql:
     image: mysql:8

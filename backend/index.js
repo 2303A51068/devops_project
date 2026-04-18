@@ -71,7 +71,7 @@ app.use((req, res) => {
 
 // Set up server port
 try {
-  const PORT = process.env.PORT || 8000;
+  const PORT = process.env.PORT || 8081;
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
   });
